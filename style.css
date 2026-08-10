@@ -1,0 +1,1371 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080808;
+    color: #f2f2f2;
+    font-family: "Inter", sans-serif;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    height: 80px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    border-bottom: 1px solid #242424;
+
+    position: sticky;
+    top: 0;
+
+    background: rgba(8, 8, 8, 0.92);
+    backdrop-filter: blur(12px);
+
+    z-index: 100;
+}
+
+.logo {
+    font-family: "Press Start 2P", monospace;
+    font-size: 18px;
+
+    color: white;
+    text-decoration: none;
+
+    letter-spacing: 1px;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    color: #888;
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+nav a:hover,
+nav a.active {
+    color: white;
+}
+
+
+/* =========================
+   SHOWCASE
+========================= */
+
+.showcase {
+    width: min(1250px, 90%);
+    margin: 0 auto;
+
+    padding: 100px 0 120px;
+}
+
+.showcase-heading {
+    margin-bottom: 35px;
+}
+
+.eyebrow {
+    font-family: "Press Start 2P", monospace;
+    font-size: 10px;
+
+    color: #777;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 15px;
+}
+
+.showcase-heading h1 {
+    font-size: clamp(32px, 5vw, 64px);
+    line-height: 1;
+}
+
+
+/* =========================
+   CAROUSEL
+========================= */
+
+.carousel {
+    position: relative;
+
+    width: 100%;
+    min-height: 550px;
+
+    overflow: hidden;
+
+    border: 1px solid #292929;
+    background: #101010;
+}
+
+
+/* =========================
+   SLIDES
+========================= */
+
+.slide {
+    position: absolute;
+
+    inset: 0;
+
+    display: grid;
+    grid-template-columns: 1.35fr 0.65fr;
+
+    opacity: 0;
+    transform: translateX(30px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.45s ease,
+        transform 0.45s ease;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: translateX(0);
+
+    pointer-events: auto;
+}
+
+
+/* =========================
+   IMAGE
+========================= */
+
+.slide-image {
+    width: 100%;
+    height: 100%;
+
+    background: #151515;
+
+    overflow: hidden;
+}
+
+.slide-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.6s ease;
+}
+
+.slide.active .slide-image img {
+    transform: scale(1.02);
+}
+
+
+/* =========================
+   SLIDE CONTENT
+========================= */
+
+.slide-content {
+    padding: 60px 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border-left: 1px solid #292929;
+}
+
+.category {
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 9px;
+
+    color: #777;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 25px;
+}
+
+.slide-content h2 {
+    font-size: clamp(28px, 3vw, 45px);
+
+    line-height: 1.05;
+
+    margin-bottom: 25px;
+}
+
+.slide-content p {
+    color: #999;
+
+    line-height: 1.8;
+
+    font-size: 15px;
+
+    max-width: 380px;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: fit-content;
+
+    padding: 15px 20px;
+
+    background: white;
+    color: black;
+
+    text-decoration: none;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 9px;
+
+    border: 2px solid white;
+
+    transition: 0.2s ease;
+}
+
+.button:hover {
+    background: transparent;
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   ARROWS
+========================= */
+
+.arrow {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 48px;
+    height: 48px;
+
+    border: 1px solid #444;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    transition: 0.2s ease;
+}
+
+.arrow:hover {
+    background: white;
+    color: black;
+}
+
+.previous {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+
+/* =========================
+   DOTS
+========================= */
+
+.dots {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+
+    border: none;
+
+    background: #444;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.dot.active {
+    width: 28px;
+
+    background: white;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about {
+    width: min(1000px, 90%);
+
+    margin: 0 auto;
+
+    padding: 100px 0 140px;
+
+    display: grid;
+
+    grid-template-columns: 160px 1fr;
+
+    border-top: 1px solid #242424;
+}
+
+.about-label span {
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 9px;
+
+    color: #777;
+
+    writing-mode: vertical-rl;
+}
+
+.about-content h2 {
+    font-size: clamp(32px, 5vw, 60px);
+
+    margin-bottom: 30px;
+
+    line-height: 1;
+}
+
+.about-content > p:not(.eyebrow) {
+    color: #999;
+
+    line-height: 1.9;
+
+    max-width: 700px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 40px;
+}
+
+.skills span {
+    padding: 10px 13px;
+
+    border: 1px solid #333;
+
+    color: #aaa;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 8px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    border-top: 1px solid #242424;
+
+    padding: 35px 6%;
+
+    color: #555;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        height: auto;
+
+        padding: 22px 5%;
+
+        flex-direction: column;
+
+        gap: 22px;
+    }
+
+    nav {
+        gap: 16px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    nav a {
+        font-size: 11px;
+    }
+
+    .showcase {
+        padding-top: 60px;
+    }
+
+    .carousel {
+        min-height: 650px;
+    }
+
+    .slide {
+        grid-template-columns: 1fr;
+    }
+
+    .slide-image {
+        height: 320px;
+    }
+
+    .slide-content {
+        border-left: none;
+        border-top: 1px solid #292929;
+
+        padding: 30px;
+    }
+
+    .slide-content p {
+        font-size: 13px;
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+    .about-label span {
+        writing-mode: horizontal-tb;
+    }
+
+    .previous {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080808;
+    color: #f2f2f2;
+    font-family: "Inter", sans-serif;
+    min-height: 100vh;
+}
+
+.navbar {
+    height: 80px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    border-bottom: 1px solid #242424;
+
+    position: sticky;
+    top: 0;
+
+    background: rgba(8, 8, 8, 0.94);
+    backdrop-filter: blur(12px);
+
+    z-index: 100;
+}
+
+.logo {
+    font-family: "Press Start 2P", monospace;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    color: #777;
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+nav a:hover,
+nav a.active {
+    color: white;
+}
+
+main {
+    width: 100%;
+}
+
+.eyebrow {
+    font-family: "Press Start 2P", monospace;
+    font-size: 9px;
+
+    color: #777;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================
+   HOME SHOWCASE
+========================= */
+
+.showcase {
+    width: min(1250px, 90%);
+    margin: auto;
+
+    padding: 100px 0 120px;
+}
+
+.showcase-heading {
+    margin-bottom: 35px;
+}
+
+.showcase-heading h1 {
+    font-size: clamp(34px, 5vw, 64px);
+    line-height: 1;
+}
+
+.carousel {
+    position: relative;
+
+    width: 100%;
+    min-height: 550px;
+
+    overflow: hidden;
+
+    border: 1px solid #292929;
+    background: #101010;
+}
+
+.slide {
+    position: absolute;
+
+    inset: 0;
+
+    display: grid;
+    grid-template-columns: 1.35fr 0.65fr;
+
+    opacity: 0;
+    transform: translateX(30px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.45s ease,
+        transform 0.45s ease;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: translateX(0);
+
+    pointer-events: auto;
+}
+
+
+/* CATEGORY ART */
+
+.category-art {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 550px;
+
+    background:
+        radial-gradient(circle at center, #202020 0%, #101010 55%, #0b0b0b 100%);
+}
+
+.art-placeholder {
+    width: 55%;
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px dashed #444;
+
+    color: #555;
+
+    text-align: center;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 13px;
+
+    line-height: 2;
+}
+
+.slide-content {
+    padding: 60px 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border-left: 1px solid #292929;
+}
+
+.category {
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 9px;
+
+    color: #777;
+
+    margin-bottom: 25px;
+}
+
+.slide-content h2 {
+    font-size: clamp(28px, 3vw, 45px);
+
+    line-height: 1.05;
+
+    margin-bottom: 25px;
+}
+
+.slide-content p {
+    color: #999;
+
+    line-height: 1.8;
+
+    max-width: 380px;
+
+    margin-bottom: 35px;
+}
+
+
+/* BUTTON */
+
+.button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: fit-content;
+
+    padding: 15px 20px;
+
+    background: white;
+    color: black;
+
+    text-decoration: none;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 8px;
+
+    border: 2px solid white;
+
+    transition: 0.2s ease;
+}
+
+.button:hover {
+    background: transparent;
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+
+/* ARROWS */
+
+.arrow {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 48px;
+    height: 48px;
+
+    border: 1px solid #444;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    z-index: 10;
+}
+
+.arrow:hover {
+    background: white;
+    color: black;
+}
+
+.previous {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+
+/* DOTS */
+
+.dots {
+    display: flex;
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+
+    border: none;
+
+    background: #444;
+
+    cursor: pointer;
+}
+
+.dot.active {
+    width: 28px;
+    background: white;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about {
+    width: min(1000px, 90%);
+
+    margin: auto;
+
+    padding: 100px 0 140px;
+
+    display: grid;
+    grid-template-columns: 160px 1fr;
+
+    border-top: 1px solid #242424;
+}
+
+.about-label span {
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 9px;
+
+    color: #777;
+
+    writing-mode: vertical-rl;
+}
+
+.about-content h2 {
+    font-size: clamp(32px, 5vw, 60px);
+
+    line-height: 1;
+
+    margin-bottom: 30px;
+}
+
+.about-content > p:not(.eyebrow) {
+    color: #999;
+
+    line-height: 1.9;
+
+    max-width: 700px;
+
+    margin-bottom: 20px;
+}
+
+.skills,
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skills {
+    margin-top: 40px;
+}
+
+.skills span,
+.tags span {
+    padding: 9px 11px;
+
+    border: 1px solid #333;
+
+    color: #aaa;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 7px;
+}
+
+
+/* =========================
+   INNER PAGE HEADERS
+========================= */
+
+.page-header {
+    width: min(1100px, 90%);
+
+    margin: auto;
+
+    padding: 110px 0 70px;
+}
+
+.page-header h1 {
+    font-size: clamp(36px, 6vw, 72px);
+
+    line-height: 1;
+
+    margin-bottom: 25px;
+}
+
+.page-header > p:last-child {
+    color: #888;
+
+    line-height: 1.7;
+
+    max-width: 600px;
+}
+
+
+/* =========================
+   PROJECT GRID
+========================= */
+
+.project-grid {
+    width: min(1100px, 90%);
+
+    margin: auto;
+
+    padding-bottom: 130px;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px;
+}
+
+.project-card {
+    border: 1px solid #292929;
+
+    background: #101010;
+
+    transition: 0.25s ease;
+}
+
+.project-card:hover {
+    border-color: #555;
+
+    transform: translateY(-4px);
+}
+
+.project-image {
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(135deg, #171717, #0d0d0d);
+
+    border-bottom: 1px solid #292929;
+
+    color: #555;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 9px;
+
+    text-align: center;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.project-info {
+    padding: 30px;
+}
+
+.project-number {
+    display: block;
+
+    color: #555;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 8px;
+
+    margin-bottom: 18px;
+}
+
+.project-info h2 {
+    font-size: 25px;
+
+    margin-bottom: 15px;
+}
+
+.project-info p {
+    color: #888;
+
+    line-height: 1.7;
+
+    margin-bottom: 20px;
+}
+
+.project-info .button {
+    margin-top: 25px;
+}
+
+
+/* =========================
+   SOUNDTRACKS
+========================= */
+
+.music-list {
+    width: min(1000px, 90%);
+
+    margin: auto;
+
+    padding-bottom: 130px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.music-card {
+    display: grid;
+
+    grid-template-columns: 220px 1fr;
+
+    border: 1px solid #292929;
+
+    background: #101010;
+}
+
+.music-art {
+    min-height: 220px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle, #202020, #0d0d0d);
+
+    border-right: 1px solid #292929;
+
+    color: #555;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 8px;
+}
+
+.music-info {
+    padding: 30px;
+}
+
+.music-info h2 {
+    font-size: 25px;
+
+    margin-bottom: 12px;
+}
+
+.music-info p {
+    color: #888;
+
+    margin-bottom: 25px;
+}
+
+.audio-placeholder {
+    width: 100%;
+
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 20px;
+
+    border: 1px dashed #444;
+
+    color: #555;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 7px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    border-top: 1px solid #242424;
+
+    padding: 35px 6%;
+
+    color: #555;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        height: auto;
+
+        padding: 22px 5%;
+
+        flex-direction: column;
+
+        gap: 22px;
+    }
+
+    nav {
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    nav a {
+        font-size: 10px;
+    }
+
+
+    .showcase {
+        padding-top: 60px;
+    }
+
+    .carousel {
+        min-height: 680px;
+    }
+
+    .slide {
+        grid-template-columns: 1fr;
+    }
+
+    .category-art {
+        min-height: 300px;
+    }
+
+    .art-placeholder {
+        width: 45%;
+    }
+
+    .slide-content {
+        padding: 30px;
+
+        border-left: none;
+
+        border-top: 1px solid #292929;
+    }
+
+
+    .about {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+    .about-label span {
+        writing-mode: horizontal-tb;
+    }
+
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .music-card {
+        grid-template-columns: 1fr;
+    }
+
+    .music-art {
+        min-height: 250px;
+
+        border-right: none;
+
+        border-bottom: 1px solid #292929;
+    }
+
+}
+/* =========================
+   CONTACT PAGE
+========================= */
+
+.contact-page {
+    width: min(1000px, 90%);
+
+    margin: auto;
+
+    padding-bottom: 130px;
+}
+
+.contact-header {
+    width: 100%;
+
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.contact-box {
+    display: grid;
+
+    grid-template-columns: 0.9fr 1.1fr;
+
+    border: 1px solid #292929;
+
+    background: #101010;
+}
+
+.contact-art {
+    min-height: 380px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #202020 0%,
+            #101010 55%,
+            #0b0b0b 100%
+        );
+
+    border-right: 1px solid #292929;
+}
+
+.contact-art-placeholder {
+    width: 55%;
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px dashed #444;
+
+    color: #555;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 10px;
+
+    text-align: center;
+}
+
+.contact-info {
+    padding: 55px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: flex-start;
+}
+
+.contact-info h2 {
+    font-size: clamp(30px, 4vw, 48px);
+
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    color: #888;
+
+    line-height: 1.8;
+
+    max-width: 430px;
+
+    margin-bottom: 30px;
+}
+
+.contact-note {
+    padding: 100px 0 0;
+}
+
+.contact-note h2 {
+    font-size: clamp(30px, 5vw, 55px);
+
+    margin-bottom: 25px;
+}
+
+.contact-note > p:last-child {
+    max-width: 700px;
+
+    color: #888;
+
+    line-height: 1.9;
+}
+
+
+/* CONTACT MOBILE */
+
+@media (max-width: 800px) {
+
+    .contact-box {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-art {
+        min-height: 280px;
+
+        border-right: none;
+
+        border-bottom: 1px solid #292929;
+    }
+
+    .contact-info {
+        padding: 35px;
+    }
+
+}
+/* =========================
+   HOME CONTACT
+========================= */
+
+.home-contact {
+    width: min(1000px, 90%);
+
+    margin: auto;
+
+    padding: 100px 0 120px;
+
+    border-top: 1px solid #242424;
+}
+
+.home-contact h2 {
+    font-size: clamp(32px, 5vw, 60px);
+
+    line-height: 1;
+
+    margin-bottom: 25px;
+}
+
+.home-contact p:not(.eyebrow) {
+    color: #888;
+
+    line-height: 1.8;
+
+    max-width: 600px;
+
+    margin-bottom: 30px;
+}
